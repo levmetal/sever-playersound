@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Audio</title>
+</head>
+<body>
+    <h1>Reproductor de Audio</h1>
+    <input type="text" id="videoId" placeholder="Ingrese el ID del video">
+    <button id="loadAudio">Cargar Audio</button>
+    <button id="playAudio" disabled>Reproducir Audio</button>
+    <button id="pauseAudio" disabled>Pause</button>
+
+    <script>
+        let audio;
+
+        document.getElementById('loadAudio').addEventListener('click', function() {
+            const videoId = document.getElementById('videoId').value;
+            if (videoId) {
+                fetch(`http://localhost:3000/audio?id=${videoId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const audioUrl = data.audioUrl;
+                        audio = new Audio(audioUrl);
+                        document.getElementById('playAudio').disabled = false;
+                        document.getElementById('pauseAudio').disabled = false;
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                alert('Por favor, ingrese un ID de video.');
+            }
+        });
+
+        document.getElementById('playAudio').addEventListener('click', function() {
+            if (audio) {
+                audio.play().catch(error => console.error('Error al reproducir:', error));
+            }
+        });
+
+        document.getElementById('pauseAudio').addEventListener('click', function() {
+            if (audio) {
+                audio.pause();
+            }
+        });
+    </script>
+</body>
+</html>

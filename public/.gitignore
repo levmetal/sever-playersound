@@ -1,0 +1,26 @@
+# Ignorar la carpeta de módulos de Node.js
+node_modules/
+
+# Ignorar los archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar las carpetas de build o dist
+build/
+dist/
+
+# Ignorar archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Ignorar los archivos de configuración de IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignorar archivos temporales
+.DS_Store
+Thumbs.db
