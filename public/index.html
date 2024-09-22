@@ -1,144 +1,104 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reproductor de Audio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        input, button {
-            margin: 10px;
-        }
-        .controls {
-            margin-top: 20px;
-        }
-        #currentTime, #duration {
-            margin: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Player - Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+    .disclaimer {
+      margin-top: 20px;
+      color: gray;
+      font-size: 14px;
+    }
+    .credit {
+      margin-top: 10px;
+      font-size: 14px;
+      color: darkgray;
+    }
+  </style>
 </head>
 <body>
-    <h1>Reproductor de Audio</h1>
-    <input type="text" id="videoId" placeholder="Ingrese el ID del video">
-    <button id="loadAudio">Cargar Audio</button>
 
-    <div class="controls">
-        <button id="playAudio" disabled>Reproducir</button>
-        <button id="pauseAudio" disabled>Pausar</button>
-        <button id="rewindAudio" disabled>Retroceder 10s</button>
-        <button id="forwardAudio" disabled>Avanzar 10s</button>
-        <br>
+<div class="container">
+  <h1>Audio Player - Test</h1>
+  <p>Enter the YouTube video ID to play its audio.</p>
 
-        <label for="volumeControl">Volumen:</label>
-        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1" disabled>
-        <br>
+  <input type="text" id="videoId" placeholder="Enter video ID">
+  <br>
+  <button onclick="getAudio()">Play Audio</button>
 
-        <span id="currentTime">00:00</span> / <span id="duration">00:00</span>
-        <br>
+  <audio id="audioPlayer" controls style="display:none;"></audio>
+  <p id="status"></p>
 
-        <input type="range" id="seekBar" min="0" value="0" step="0.01" disabled>
-    </div>
+  <!-- Disclaimer -->
+  <p class="disclaimer">
+    This frontend is for testing the server only. The real frontend is <strong>PLAYERSOUND</strong>.
+  </p>
 
-    <script>
-        let audio;
-        let isPlaying = false;
+  <!-- Credit -->
+  <p class="credit">Created by Levi Oquendo</p>
+</div>
 
-        // Cargar audio
-        document.getElementById('loadAudio').addEventListener('click', function() {
-            const videoId = document.getElementById('videoId').value;
-            if (videoId) {
-                fetch(`http://localhost:4000/audio?id=${videoId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const audioUrl = data.audioUrl;
-                        audio = new Audio(audioUrl);
-                        audio.addEventListener('loadedmetadata', function() {
-                            document.getElementById('duration').innerText = formatTime(audio.duration);
-                            document.getElementById('seekBar').max = audio.duration;
-                            document.getElementById('playAudio').disabled = false;
-                            document.getElementById('pauseAudio').disabled = false;
-                            document.getElementById('rewindAudio').disabled = false;
-                            document.getElementById('forwardAudio').disabled = false;
-                            document.getElementById('volumeControl').disabled = false;
-                            document.getElementById('seekBar').disabled = false;
-                        });
-                    })
-                    .catch(error => console.error('Error:', error));
-            } else {
-                alert('Por favor, ingrese un ID de video.');
-            }
-        });
+<script>
+  function getAudio() {
+    const videoId = document.getElementById('videoId').value;
+    const status = document.getElementById('status');
+    const audioPlayer = document.getElementById('audioPlayer');
 
-        // Reproducir audio
-        document.getElementById('playAudio').addEventListener('click', function() {
-            if (audio) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    updateCurrentTime();
-                }).catch(error => console.error('Error al reproducir:', error));
-            }
-        });
+    if (!videoId) {
+      status.textContent = "Please enter a video ID.";
+      return;
+    }
 
-        // Pausar audio
-        document.getElementById('pauseAudio').addEventListener('click', function() {
-            if (audio && isPlaying) {
-                audio.pause();
-                isPlaying = false;
-            }
-        });
+    status.textContent = "Loading audio...";
 
-        // Retroceder 10 segundos
-        document.getElementById('rewindAudio').addEventListener('click', function() {
-            if (audio) {
-                audio.currentTime = Math.max(0, audio.currentTime - 10);
-            }
-        });
-
-        // Adelantar 10 segundos
-        document.getElementById('forwardAudio').addEventListener('click', function() {
-            if (audio) {
-                audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
-            }
-        });
-
-        // Controlar volumen
-        document.getElementById('volumeControl').addEventListener('input', function() {
-            if (audio) {
-                audio.volume = this.value;
-            }
-        });
-
-        // Actualizar barra de progreso y tiempo actual
-        audio?.addEventListener('timeupdate', function() {
-            document.getElementById('seekBar').value = audio.currentTime;
-            document.getElementById('currentTime').innerText = formatTime(audio.currentTime);
-        });
-
-        // Actualizar tiempo al mover barra de progreso
-        document.getElementById('seekBar').addEventListener('input', function() {
-            if (audio) {
-                audio.currentTime = this.value;
-            }
-        });
-
-        // Función para actualizar el tiempo actual
-        function updateCurrentTime() {
-            if (audio && isPlaying) {
-                document.getElementById('currentTime').innerText = formatTime(audio.currentTime);
-                document.getElementById('seekBar').value = audio.currentTime;
-                requestAnimationFrame(updateCurrentTime);
-            }
+    fetch(`/audio?id=${videoId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.audioUrl) {
+          audioPlayer.src = data.audioUrl;
+          audioPlayer.style.display = 'block';
+          audioPlayer.play();
+          status.textContent = "Playing audio.";
+        } else {
+          status.textContent = "Error: Unable to fetch audio.";
         }
+      })
+      .catch(error => {
+        status.textContent = "Error fetching audio.";
+        console.error("Error fetching audio:", error);
+      });
+  }
+</script>
 
-        // Formatear tiempo (mm:ss)
-        function formatTime(time) {
-            const minutes = Math.floor(time / 60);
-            const seconds = Math.floor(time % 60);
-            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-    </script>
 </body>
 </html>
