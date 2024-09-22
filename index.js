@@ -1,22 +1,26 @@
 import express from 'express';
 import axios from 'axios';
 import path from 'path';
-import cors from 'cors';  // Asegúrate de importar cors
+import cors from 'cors';  // Importing cors module
 
-const port = 4000;
+// Use the `fileURLToPath` and `URL` classes to correctly resolve paths in ES modules
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Initialize the server
 const app = express();
 
 // Middleware CORS
 app.use(cors());
 
-// Ruta para servir archivos estáticos (HTML, CSS, JS, etc.)
-const __dirname = path.resolve();
+// Serve static files (HTML, CSS, JS, etc.)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Ruta para obtener el audio desde inv.nadeko.net
+// Route to fetch audio from inv.nadeko.net
 app.get('/audio', async (req, res) => {
   const videoId = req.query.id;
-  
 
   if (!videoId) {
     return res.status(400).send('Missing video ID');
@@ -37,11 +41,13 @@ app.get('/audio', async (req, res) => {
 
     res.json({ audioUrl: finalUrl });
   } catch (error) {
-    console.error('Error al obtener la URL de redirección:', error);
-    res.status(500).send('Error al obtener la URL de redirección');
+    console.error('Error fetching redirect URL:', error);
+    res.status(500).send('Error fetching redirect URL');
   }
 });
 
+// Use the port assigned by Render or default to 4000 locally
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
