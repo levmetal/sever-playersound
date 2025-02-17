@@ -1,16 +1,26 @@
-import { loadEnvFile } from 'node:process';
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import dotenv from 'dotenv';
+import helmet from 'helmet';
+import morgan from 'morgan';
 import audioRoute from './routes/audio.js';
 
-
-loadEnvFile("./.env");
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
+
+// Use security middleware
+app.use(helmet());
+
+// Enable CORS
 app.use(cors());
+
+// Use logging middleware
+app.use(morgan('combined'));
 
 // Serve static files (HTML, CSS, JS)
 const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use the audio route
 app.use('/audio', audioRoute);
 
-// Use the port assigned by Render or default to 4000 locally
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+// Use the port assigned by Render or default to 5000 locally
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
