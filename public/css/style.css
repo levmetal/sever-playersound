@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  audio {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .disclaimer {
+    margin-top: 20px;
+    color: gray;
+    font-size: 14px;
+  }
+  .credit {
+    margin-top: 10px;
+    font-size: 14px;
+    color: darkgray;
+    }

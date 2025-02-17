@@ -17,7 +17,7 @@ function getAudio() {
                 audioPlayer.src = data.audioUrl;
                 audioPlayer.type = 'audio/webm'; //  Set type to audio/webm
                 audioPlayer.style.display = 'block';
-                audioPlayer.load(); // Load the new source before playing**
+                audioPlayer.load(); // Load the new source before playing
                 audioPlayer.play();
                 status.textContent = "Playing audio.";
             } else {
