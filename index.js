@@ -4,8 +4,7 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
-import helmet from 'helmet';
-import morgan from 'morgan';
+
 import audioRoute from './routes/audio.js';
 
 // Load environment variables from .env file
@@ -13,25 +12,21 @@ dotenv.config();
 
 const app = express();
 
-// Use security middleware
-app.use(helmet());
-
-// Enable CORS
-app.use(cors());
-
-// Use logging middleware
-app.use(morgan('combined'));
-
 // Serve static files (HTML, CSS, JS)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Use the audio route
+app.use(cors());
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 app.use('/audio', audioRoute);
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
