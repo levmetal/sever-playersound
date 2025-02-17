@@ -24,3 +24,4 @@ dist/
 # Ignorar archivos temporales
 .DS_Store
 Thumbs.db
+.vercel
