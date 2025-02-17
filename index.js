@@ -1,4 +1,4 @@
-import { env, loadEnvFile } from 'node:process';
+import { loadEnvFile } from 'node:process';
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
