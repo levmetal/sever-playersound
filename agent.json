@@ -14,10 +14,10 @@
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1739777555,
+        "expirationDate": 1739779504,
         "hostOnly": false,
         "httpOnly": false,
-        "name": "ST-3opvp5",
+        "name": "ST-xuwub9",
         "path": "/",
         "sameSite": null,
         "secure": false,
@@ -40,7 +40,7 @@
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1771313550.942149,
+        "expirationDate": 1771315501.724986,
         "hostOnly": false,
         "httpOnly": false,
         "name": "SIDCC",
@@ -49,7 +49,7 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "AKEyXzX9BVFMAnJ70Th-UXFuM7FSGH5iXt-xdNtiM0YKHVQSqXsr6ewTQMI-HZ6mmlYksa35JA"
+        "value": "AKEyXzUZhHz8R3BAAicVLtcyLsXevEspPs9TmcafOjrhU2iRXgsmMg4xtZX8Zws69HwWH8WLNA"
     },
     {
         "domain": ".youtube.com",
@@ -66,7 +66,7 @@
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1771313493.289359,
+        "expirationDate": 1771315229.544269,
         "hostOnly": false,
         "httpOnly": true,
         "name": "__Secure-1PSIDTS",
@@ -75,7 +75,20 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "sidts-CjEBEJ3XV1_DU9i4Ao5ejHCiI-RMW-W7WTqJE_CRhyEUwNeNVUBtnw3lYjOEDFgF7UoUEAA"
+        "value": "sidts-CjEBEJ3XV4q9LfmjRjsdYVOGX3a0DbHJScttLl-dehBEZ3gm6OngX8e_VzDeZZ_m55vXEAA"
+    },
+    {
+        "domain": ".youtube.com",
+        "expirationDate": 1739779739,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "CONSISTENCY",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "AKreu9u8X1U-DqjQGygi6tSkU7czOYeWfhK2y2ugBlf8jLSY2cUNMRjPG9ELkBneYb2rtqG-gIY6r0-YxiD8r7l2GUIuo-xNybJnJexMcec_GedSgQ5_NxYL5gw"
     },
     {
         "domain": ".youtube.com",
@@ -92,7 +105,7 @@
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1771313550.942248,
+        "expirationDate": 1771315501.725092,
         "hostOnly": false,
         "httpOnly": true,
         "name": "__Secure-1PSIDCC",
@@ -101,7 +114,7 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "AKEyXzV5jm1apaMA48rWm1OPjv7EY3FzWBubTyXVsADJwS50JyOFjYpDtk7qjgLgBFhVuxOH_A"
+        "value": "AKEyXzWmnYJn1kCHzzdPHC2_OYAz2IosbU4Eo-1BPE1VoYA1CVliGWvUuZr2VX3B3vCuC3ntvA"
     },
     {
         "domain": ".youtube.com",
@@ -157,7 +170,7 @@
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1771313550.942316,
+        "expirationDate": 1771315501.725139,
         "hostOnly": false,
         "httpOnly": true,
         "name": "__Secure-3PSIDCC",
@@ -166,11 +179,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "AKEyXzXIEkIE1vKVzHcQy-XtBm39vG7bPQLsP1zPmzNbA_AUGwQDXVajDjJEUuFDJ1tb1Fq_TQ"
+        "value": "AKEyXzUZoSfUgUOtEa8h_R72NkfAmoDJTVTMF_F7I4dOmUvEjeio_mQmJ-Jhg3jwzcFhhfdUtA"
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1771313493.289505,
+        "expirationDate": 1771315229.544401,
         "hostOnly": false,
         "httpOnly": true,
         "name": "__Secure-3PSIDTS",
@@ -179,7 +192,7 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "sidts-CjEBEJ3XV1_DU9i4Ao5ejHCiI-RMW-W7WTqJE_CRhyEUwNeNVUBtnw3lYjOEDFgF7UoUEAA"
+        "value": "sidts-CjEBEJ3XV4q9LfmjRjsdYVOGX3a0DbHJScttLl-dehBEZ3gm6OngX8e_VzDeZZ_m55vXEAA"
     },
     {
         "domain": ".youtube.com",
@@ -222,7 +235,7 @@
     },
     {
         "domain": ".youtube.com",
-        "expirationDate": 1774337496.134424,
+        "expirationDate": 1774339499.192001,
         "hostOnly": false,
         "httpOnly": false,
         "name": "PREF",
@@ -231,7 +244,20 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "f6=40000000&tz=America.Caracas"
+        "value": "f6=40000000&tz=America.Caracas&f7=100"
+    },
+    {
+        "domain": ".youtube.com",
+        "expirationDate": 1739779503,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ST-l3hjtt",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "session_logininfo=AFmmF2swRQIgNGqPp6C5kJbGcCCn2ZVJxqcUKC_EnegQ1LTmiOjT1RsCIQCpzYS7LQAsqoBfxk3A9eo6KC3tSqX017b9-m837u6LBw%3AQUQ3MjNmeGt1VWtqR2NGMmowWW04OVYyb2tkLUpLWldtSmpJUlcyZ0hCN2ZvcU1TQi1UMXJEOUtBbDdTS1JLOUZwZ2xMTzBWYmQwMm04WnFjTkIzYXVpR2lqQUVqaXlJWGpkU0Rpb0VsUGQzVzd5Ny1pTGhoUE9JNFFrSjlqSDRMX3dKMVBPV1ZFQUh3bzVxdGFJbDFUZ1FoejhDb1JDeW1R"
     },
     {
         "domain": ".youtube.com",

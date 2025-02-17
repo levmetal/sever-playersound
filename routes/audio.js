@@ -1,18 +1,25 @@
 import express from 'express';
 import ytdl from '@distube/ytdl-core';
-import fs from 'fs';
-const router = express.Router();
+import { log } from 'console';
+import cookie from '../agent.json' with { type: 'json' };
 
+
+    
+  
+
+const router = express.Router();
 const audioURLCache = new Map();
 const CACHE_EXPIRY_SECONDS = 3600;
-const agent = ytdl.createAgent(JSON.parse(fs.readFileSync("agent.json")));
+const agent = ytdl.createAgent(cookie); 
+
+
 
 //  Implementar Función de Reintento con Retroceso Exponencial
 async function fetchAudioInfoWithRetry(videoUrl, maxRetries = 3, delay = 1000) { // delay en milisegundos
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
         try {
             console.log(`Obteniendo ytdl.getInfo (intento ${attempt + 1}) para la URL: ${videoUrl}`); // Log de reintentos en producción
-            const info = await ytdl.getInfo(videoUrl, { agent });
+            const info = await ytdl.getInfo(videoUrl, { agent }); // Usar el agente para evitar el error 429
             return info; // ¡Éxito! Devolver info
         } catch (error) {
             if (error.statusCode === 429) {
